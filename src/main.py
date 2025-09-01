@@ -3,6 +3,7 @@ from features import extract_features
 from model import detect_anomalies
 import os
 
+
 def main():
     file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs", "sample_log.csv")
     
@@ -20,6 +21,15 @@ def main():
     df_features, anomalies = detect_anomalies(df_features)
     print(f"\n🚨 Detected {len(anomalies)} anomalies:")
     print(anomalies)
+
+    # Visualization
+    from visualize import plot_log_levels, plot_anomalies_timeline, plot_feature_boxplots
+
+    print("\n📊 Generating visualizations...")
+    plot_log_levels(df)
+    plot_anomalies_timeline(df_features)
+    plot_feature_boxplots(df_features)
+
 
 if __name__ == "__main__":
     main()
