@@ -8,17 +8,17 @@ def main():
     
     # Parse logs
     df = parse_logs(file_path)
-    print("Parsed logs:")
+    print("✅ Parsed logs:")
     print(df.head())
     
     # Feature engineering
     df_features = extract_features(df)
-    print("\nFeature DataFrame:")
+    print("\n📊 Feature DataFrame:")
     print(df_features.head())
     
     # Detect anomalies
     df_features, anomalies = detect_anomalies(df_features)
-    print(f"\nDetected {len(anomalies)} anomalies:")
+    print(f"\n🚨 Detected {len(anomalies)} anomalies:")
     print(anomalies)
 
 if __name__ == "__main__":
