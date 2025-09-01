@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 def parse_logs(file_path):
     df = pd.read_csv(file_path, parse_dates=['timestamp'])
@@ -7,5 +8,7 @@ def parse_logs(file_path):
     return df
 
 if __name__ == "__main__":
-    df = parse_logs("logs/sample_log.csv")
+    file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs", "sample_log.csv")
+    df = parse_logs(file_path)
+    print("Parsed logs:")
     print(df.head())
