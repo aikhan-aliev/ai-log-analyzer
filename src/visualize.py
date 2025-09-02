@@ -1,28 +1,35 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+
+REPORTS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "reports")
+os.makedirs(REPORTS_DIR, exist_ok=True)
 
 def plot_status_distribution(df):
-    """Plot the distribution of job statuses (success/fail)."""
     plt.figure(figsize=(6, 4))
     sns.countplot(x="status", data=df, order=df["status"].value_counts().index)
     plt.title("Job Status Distribution")
     plt.xlabel("Status")
     plt.ylabel("Count")
-    plt.show()
+    file_path = os.path.join(REPORTS_DIR, "status_distribution.png")
+    plt.savefig(file_path)
+    plt.close()
+    print(f"Saved: {file_path}")
 
 
 def plot_stage_distribution(df):
-    """Plot how many logs per pipeline stage (build/test/deploy)."""
     plt.figure(figsize=(6, 4))
     sns.countplot(x="stage", data=df, order=df["stage"].value_counts().index)
     plt.title("Stage Distribution")
     plt.xlabel("Stage")
     plt.ylabel("Count")
-    plt.show()
+    file_path = os.path.join(REPORTS_DIR, "stage_distribution.png")
+    plt.savefig(file_path)
+    plt.close()
+    print(f"Saved: {file_path}")
 
 
 def plot_anomalies_timeline(df_features):
-    """Plot anomalies over time."""
     plt.figure(figsize=(10, 5))
     sns.scatterplot(
         x="timestamp", y="duration",
@@ -32,17 +39,23 @@ def plot_anomalies_timeline(df_features):
     plt.title("Anomalies Over Time")
     plt.xlabel("Timestamp")
     plt.ylabel("Duration")
-    plt.legend(title="Log Status")
-    plt.show()
+    file_path = os.path.join(REPORTS_DIR, "anomalies_timeline.png")
+    plt.savefig(file_path)
+    plt.close()
+    print(f"Saved: {file_path}")
 
 
 def plot_feature_boxplots(df_features):
-    """Plot boxplots to compare anomaly vs normal for numeric features."""
     numeric_cols = df_features.select_dtypes(include="number").columns
     for col in numeric_cols:
-        if col not in ["anomaly"]:  # skip the anomaly flag itself
+        if col != "anomaly":
             plt.figure(figsize=(6, 4))
-            sns.boxplot(x="anomaly_label", y=col, data=df_features,
-                        palette={"Normal": "green", "Anomaly": "red"})
+            sns.boxplot(
+                x="anomaly_label", y=col, data=df_features,
+                palette={"Normal": "green", "Anomaly": "red"}
+            )
             plt.title(f"Feature Distribution by Anomaly: {col}")
-            plt.show()
+            file_path = os.path.join(REPORTS_DIR, f"boxplot_{col}.png")
+            plt.savefig(file_path)
+            plt.close()
+            print(f"Saved: {file_path}")

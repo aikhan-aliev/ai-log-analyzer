@@ -24,13 +24,13 @@ def main():
 
     # Visualization
     from visualize import (
-        plot_status_distribution,
-        plot_stage_distribution,
-        plot_anomalies_timeline,
-        plot_feature_boxplots
-    )
+    plot_status_distribution,
+    plot_stage_distribution,
+    plot_anomalies_timeline,
+    plot_feature_boxplots
+)
 
-    print("\n📊 Generating visualizations...")
+    print("\n📊 Generating and saving visualizations to reports/ ...")
     plot_status_distribution(df)
     plot_stage_distribution(df)
     plot_anomalies_timeline(df_features)
