@@ -50,9 +50,3 @@ This project showcases the integration of **AI-driven analytics**, **data engine
 This project clearly demonstrates the ability to combine **AI, software engineering, and DevOps skills**, making it highly relevant and impressive for AI Student Developer or DevOps-focused roles.
 
 ---
-
-## Potential Extensions (Optional)
-- Real-time anomaly detection for live CI/CD logs.  
-- Alerting via Slack or email when anomalies are detected.  
-- Integration with cloud services like AWS S3 or Azure for log storage and visualization.  
-- Advanced ML models (e.g., clustering or deep learning) for more sophisticated anomaly detection.
