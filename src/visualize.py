@@ -46,16 +46,22 @@ def plot_anomalies_timeline(df_features):
 
 
 def plot_feature_boxplots(df_features):
+    """Plot boxplots to compare anomaly vs normal for numeric features."""
     numeric_cols = df_features.select_dtypes(include="number").columns
     for col in numeric_cols:
-        if col != "anomaly":
+        if col not in ["anomaly"]:  # skip the anomaly flag itself
             plt.figure(figsize=(6, 4))
             sns.boxplot(
-                x="anomaly_label", y=col, data=df_features,
-                palette={"Normal": "green", "Anomaly": "red"}
+                y=col,
+                x="anomaly_label",   # this becomes the hue for color mapping
+                data=df_features,
+                hue="anomaly_label", # explicitly assign hue
+                palette={"Normal": "green", "Anomaly": "red"},
+                dodge=False
             )
             plt.title(f"Feature Distribution by Anomaly: {col}")
-            file_path = os.path.join(REPORTS_DIR, f"boxplot_{col}.png")
-            plt.savefig(file_path)
+            plt.xlabel("Anomaly Label")
+            plt.ylabel(col)
+            plt.legend([], [], frameon=False)  # hide extra legend
+            plt.savefig(f"/app/reports/boxplot_{col}.png")
             plt.close()
-            print(f"Saved: {file_path}")
