@@ -47,6 +47,5 @@ This project showcases the integration of **AI-driven analytics**, **data engine
 3. **Professional-grade deliverables:** Includes automated visual reports, fully containerized environment, and ready-to-run scripts.  
 4. **Technical depth & clarity:** Demonstrates Python programming, data engineering, ML modeling, visualization, and containerization skills in one project.  
 
-This project clearly demonstrates the ability to combine **AI, software engineering, and DevOps skills**, making it highly relevant and impressive for AI Student Developer or DevOps-focused roles.
-
 ---
+
