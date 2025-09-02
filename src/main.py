@@ -23,10 +23,16 @@ def main():
     print(anomalies)
 
     # Visualization
-    from visualize import plot_log_levels, plot_anomalies_timeline, plot_feature_boxplots
+    from visualize import (
+        plot_status_distribution,
+        plot_stage_distribution,
+        plot_anomalies_timeline,
+        plot_feature_boxplots
+    )
 
     print("\n📊 Generating visualizations...")
-    plot_log_levels(df)
+    plot_status_distribution(df)
+    plot_stage_distribution(df)
     plot_anomalies_timeline(df_features)
     plot_feature_boxplots(df_features)
 
